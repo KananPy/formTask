@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getDocs } from 'firebase/firestore';
+import { getDocs, onSnapshot } from 'firebase/firestore';
 import { formDataCollection } from '../firebase/firestore';
 import Table from '../components/Table/index';
-
-
-
+import { debounce } from 'lodash';
 
 export default function TablePage() {
   const [data, setData] = useState([]);
-  
+
   const fetchData = async () => {
     try {
       const querySnapshot = await getDocs(formDataCollection);
@@ -22,27 +20,36 @@ export default function TablePage() {
     }
   };
 
-  
-
-
-  console.log("my data", data);
+  const debouncedFetchData = debounce(fetchData, 1000); // Adjust the delay as needed
 
   useEffect(() => {
     const fetchDataAndSetData = async () => {
-      
-      if (data.length === 0) {
-        await fetchData();
+      try {
+        const querySnapshot = await getDocs(formDataCollection);
+        const documents = [];
+        querySnapshot.forEach((doc) => {
+          documents.push({ id: doc.id, ...doc.data() });
+        });
+        setData(documents);
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
     };
 
     fetchDataAndSetData();
-  }, [data])
 
-  
+    const unsubscribe = onSnapshot(formDataCollection, (querySnapshot) => {
+      debouncedFetchData();
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []); // Removed 'data' from the dependency array
 
   return (
     <div>
-      <Table data={data}/>
+      <Table data={data} />
     </div>
   );
 }

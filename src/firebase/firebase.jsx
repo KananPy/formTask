@@ -2,12 +2,12 @@
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB7HFGho5T_iH49GGTh4gW4dmEl9HRZwKc",
-  authDomain: "formtask-7c8d0.firebaseapp.com",
-  projectId: "formtask-7c8d0",
-  storageBucket: "formtask-7c8d0.appspot.com",
-  messagingSenderId: "23362567252",
-  appId: "1:23362567252:web:2efacc57bbc9087c6741c1"
+  apiKey: "AIzaSyBlPPtP5SfLSsNDCoibYPk_YksumH-yPWg",
+  authDomain: "formpage-9c508.firebaseapp.com",
+  projectId: "formpage-9c508",
+  storageBucket: "formpage-9c508.appspot.com",
+  messagingSenderId: "702864632141",
+  appId: "1:702864632141:web:112ee01b0b07db66a9ef04"
 };
 
 const app = initializeApp(firebaseConfig);
