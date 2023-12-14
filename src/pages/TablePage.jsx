@@ -20,7 +20,7 @@ export default function TablePage() {
     }
   };
 
-  const debouncedFetchData = debounce(fetchData, 1000); // Adjust the delay as needed
+  const debouncedFetchData = debounce(fetchData, 1000); 
 
   useEffect(() => {
     const fetchDataAndSetData = async () => {
@@ -45,7 +45,7 @@ export default function TablePage() {
     return () => {
       unsubscribe();
     };
-  }, []); // Removed 'data' from the dependency array
+  }, []); 
 
   return (
     <div>

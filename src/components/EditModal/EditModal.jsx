@@ -65,7 +65,7 @@ const EditModal = ({ isOpen, isClosed, data }) => {
             {renderOptions(sectorData)}
           </select>
         </label>
-        {/* Add more input fields for other properties */}
+        
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={isClosed} className="mr-2">
